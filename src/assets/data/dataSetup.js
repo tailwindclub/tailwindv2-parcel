@@ -160,9 +160,25 @@ function dwellingAggregator(apartments) {
     const attScores = aptAttributes.map((attribute) => {
       return attributeScores[attribute.value];
     });
-    console.log("apt", attScores, aptAttributes, attributeScores);
+    const aptCatScore = attScores.reduce((a, b) => a + b);
+    apartment.rarityScore = aptCatScore;
   });
 
+  //sort apartments based on highest rarityscore
+  //determine rank for each apartment
+  apartments
+    .sort((a, b) => {
+      return a.rarityScore > b.rarityScore;
+    })
+    .forEach((apartment, index, apts) => {
+      apartment.rank = apts.length - index;
+    });
+  console.log(
+    "sorted",
+    apartments.sort((a, b) => {
+      return a.rarityScore > b.rarityScore;
+    })
+  );
   // attributeRarityScore(dataSetup);
   // console.log(
   //   "dataSetup",

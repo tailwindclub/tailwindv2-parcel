@@ -34,7 +34,28 @@ export function PieChart(props) {
       ],
     },
     legend: {
-      show: false,
+      show: true,
+      markers: {
+        fillColors: [
+          "#12cf5a",
+          "#1a5ebe",
+          "#b11cd6",
+          "#f7b11a",
+          "#009688",
+          "#76be43",
+          "#7c4dff",
+          "#d81b60",
+          "#ff5722",
+          "#607d8b",
+          "#00e676",
+          "#f06292",
+          "#b388ff",
+        ],
+      },
+    },
+    tooltip: {
+      enabled: true,
+      fillSeriesColor: true,
     },
     // chartOptions: {
     //   labels: Object.keys(props.data),
@@ -49,7 +70,7 @@ export function PieChart(props) {
         series={options.series}
         type="donut"
         labels={options.labels}
-        width={400}
+        width={480}
       />
     </div>
   );
