@@ -53,14 +53,14 @@ function App() {
         return attributeScores[attribute.value];
       });
       const aptCatScore = aptCatScoreArray.reduce((a, b) => a + b);
-      console.log(
-        "categoryData",
-        categoryData,
-        dwellingID,
-        selectedDwelling,
-        aptCatScoreArray,
-        aptCatScore
-      );
+      // console.log(
+      //   "categoryData",
+      //   categoryData,
+      //   dwellingID,
+      //   selectedDwelling,
+      //   aptCatScoreArray,
+      //   aptCatScore
+      // );
     }
   }
   function round(value, precision) {
@@ -75,7 +75,7 @@ function App() {
       <div className="container grid grid-cols-1">
         <div className="container mx-auto flex flex-row justify-center flex-wrap">
           <input
-            className="border-2 justify-center"
+            className="border-2 justify-center pr-2 mx-1.5"
             type="number"
             onChange={(input) => {
               const id = input.target.value;
@@ -98,7 +98,10 @@ function App() {
               );
             })}
           </select>
-          <button className="p-2 rounded-sm" onClick={displayRarityPerCategory}>
+          <button
+            className="h-10 px-6 m-2 text-lg text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800"
+            onClick={displayRarityPerCategory}
+          >
             Search
           </button>
         </div>
@@ -128,7 +131,8 @@ function App() {
           </div>
           {/* Rarity */}
           <div className="col-span-full text-center grid grid-cols-1">
-            <span>Rarity:{round(dwelling?.rarityScore, 2) || ""}</span>
+            <div>Rarity: {round(dwelling?.rarityScore, 2) || ""}</div>
+
             <span>Rank:{dwelling?.rank}</span>
             {dwelling ? (
               <span>
@@ -139,6 +143,12 @@ function App() {
               ""
             )}
           </div>
+          {dwelling && (
+            <div className="pad pt-8">
+              If you like this tool, please consider tipping the developer :)
+              with ONE or LUMEN 0x2995fb8A88a71A6A1aFAFF395Adc92015A43714A
+            </div>
+          )}
         </div>
 
         {/* Pie Chart cards */}
