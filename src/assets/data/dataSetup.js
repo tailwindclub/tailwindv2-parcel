@@ -173,12 +173,12 @@ function dwellingAggregator(apartments) {
     .forEach((apartment, index, apts) => {
       apartment.rank = apts.length - index;
     });
-  console.log(
-    "sorted",
-    apartments.sort((a, b) => {
-      return a.rarityScore > b.rarityScore;
-    })
-  );
+  // console.log(
+  //   "sorted",
+  //   apartments.sort((a, b) => {
+  //     return a.rarityScore > b.rarityScore;
+  //   })
+  // );
   // attributeRarityScore(dataSetup);
   // console.log(
   //   "dataSetup",

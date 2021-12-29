@@ -8,6 +8,7 @@ function App() {
   const [dwellingType, setDwellingType] = React.useState("Apartment S");
   const [dwellingID, setDwellingID] = React.useState(null);
   const [dwelling, setDwelling] = React.useState(null);
+
   const [data, setData] = React.useState(init());
   // const data = init();
   // console.log("data init", data);
@@ -62,6 +63,10 @@ function App() {
       );
     }
   }
+  function round(value, precision) {
+    var multiplier = Math.pow(10, precision || 0);
+    return Math.round(value * multiplier) / multiplier;
+  }
 
   return (
     <div className="container">
@@ -97,10 +102,43 @@ function App() {
             Search
           </button>
         </div>
-
-        {/* Rarity */}
-        <div className="col-span-full text-center">
-          <span>Rarity:</span>
+        {/* attributes */}
+        <div className="container shadow-lg bg-white my-8 p-4">
+          {dwelling ? (
+            <div className="container flex justify-center">
+              <img
+                className="justify-center"
+                src={dwelling.image}
+                alt={dwelling.name}
+              ></img>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="text-center grid grid-cols-2">
+            {dwelling
+              ? dwelling.attributes.map((attribute) => {
+                  return (
+                    <div>
+                      {attribute.trait_type}: {attribute.value}
+                    </div>
+                  );
+                })
+              : ""}
+          </div>
+          {/* Rarity */}
+          <div className="col-span-full text-center grid grid-cols-1">
+            <span>Rarity:{round(dwelling?.rarityScore, 2) || ""}</span>
+            <span>Rank:{dwelling?.rank}</span>
+            {dwelling ? (
+              <span>
+                {dwelling?.name} Ranks {dwelling.rank} /
+                {data[dwellingType].apartments.length}
+              </span>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
 
         {/* Pie Chart cards */}
@@ -127,6 +165,11 @@ function App() {
       </div>
     </div>
   );
+}
+
+function round(value, precision) {
+  var multiplier = Math.pow(10, precision || 0);
+  return Math.round(value * multiplier) / multiplier;
 }
 
 ReactDom.render(<App />, document.getElementById("app"));
